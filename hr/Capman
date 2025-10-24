@@ -1,0 +1,36 @@
+-- Таблица отделов
+CREATE TABLE departments (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    description TEXT
+);
+
+-- Таблица должностей
+CREATE TABLE positions (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    description TEXT
+);
+
+-- Таблица сотрудников
+CREATE TABLE employees (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    last_name VARCHAR(50) NOT NULL,
+    first_name VARCHAR(50) NOT NULL,
+    middle_name VARCHAR(50),
+    birth_date DATE NOT NULL,
+    passport_series VARCHAR(4) NOT NULL,
+    passport_number VARCHAR(6) NOT NULL,
+    phone VARCHAR(20) NOT NULL,
+    email VARCHAR(100),
+    address TEXT NOT NULL,
+    department_id INT NOT NULL,
+    position_id INT NOT NULL,
+    salary DECIMAL(10,2) NOT NULL,
+    hire_date DATE NOT NULL,
+    dismissal_date DATE NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (department_id) REFERENCES departments(id),
+    FOREIGN KEY (position_id) REFERENCES positions(id)
+);
